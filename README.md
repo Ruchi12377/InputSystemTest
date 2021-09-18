@@ -1,3 +1,25 @@
 # InputSystemTest
-デフォルトのバインディングなどの設定はInputActionAssetから行う
-ここではGameControlsという名前のInputActionAssetを作成している
+InputSystemのテスト  
+GitHubにファイルをアップロードするのに慣れていないため必要そうなものだけ手動でアップロードしました  
+恐らくプロジェクトとしては壊れていますが、強引に開けば動いてくれるはず  
+Unityのバージョンは2021.2.0bの系統を使っています  
+InputSystem のバージョン1.1系ではポーリング方式で使用する際のAPIが追加されたようなのでこれを使いたいです  
+
+### InputSystemフォルダ内のものについて
+InputSystem.inputsettingsというアセットにInputSystemの設定が保存されています  
+このアセット中のUpdate ModeをProcess Event in Fixed Updateに設定すると  
+InputSystemの更新タイミングがFixed Updateと同期されるようなのでこれを利用したいです  
+
+デフォルトのバインディングなどの設定はInputActionAssetから行うつもりです  
+ここではInputActionAssetにGameControlsという名前をつけて保存しています  
+また、Ganerate C# classのオプションを用いることで同名クラスを自動生成しています  
+
+自動生成されたGameControlsクラスはInputActionAssetで設定した内容を元にInputActionを作ってくれるようです    
+また、InputActionAssetで設定したInputActionMapごとに纏めた構造体を生成してくれるようです  
+このGameControlsクラスを用いれば特定のInputActionMapに属するInputActionを纏めてオンオフできそうです  
+ですが、GameControlsクラスは複数インスタンスを作れるようなのでそのまま使うのは管理上不便そうです
+
+### Scenesフォルダ内のものについて
+Mainシーンのみしかありません
+
+### Scriptsフォルダ内のものについて

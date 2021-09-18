@@ -1,6 +1,10 @@
 using UnityEngine;
 
-//　動作確認用
+/// <summary>
+/// 動作確認用　
+/// Playerマップ内のJumpアクションのみ読み出せる
+/// JumpアクションはQキーにバインドしている
+/// </summary>
 public class Test : MonoBehaviour
 {
     private GameControls.PlayerActions input;
@@ -12,6 +16,7 @@ public class Test : MonoBehaviour
     }
 
     private void FixedUpdate() {
+
         if (input.Jump.WasPressedThisFrame()) {
             Debug.Log("WasPressed");
         }

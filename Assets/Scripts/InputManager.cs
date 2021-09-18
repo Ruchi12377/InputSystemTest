@@ -29,11 +29,14 @@ public sealed class InputManager : MonoBehaviour {
     private GameControls controls;
 
     // プレイヤー用
-    public GameControls.PlayerActions Player => controls.Player;
+    private GameControls.PlayerActions _player;
+    public GameControls.PlayerActions Player => _player;
     // カメラ用
-    public GameControls.CameraActions Camera => controls.Camera;
+    private GameControls.CameraActions _camera;
+    public GameControls.CameraActions Camera => _camera;
     // UI用
-    public GameControls.UIActions UI => controls.UI;
+    private GameControls.UIActions _UI;
+    public GameControls.UIActions UI => _UI;
 
     private void Awake() {
         /* ---シングルトンのインスタンスの初期化処理 ここから--- */
@@ -47,14 +50,30 @@ public sealed class InputManager : MonoBehaviour {
         }
         /* ---シングルトンのインスタンスの初期化処理 ここまで--- */
 
+        /* ---GameControls関連の初期化処理 ここから--- */
+        // GameControlsクラスのインスタンスを生成する
+        // 内部でScriptableObjectを継承したクラスを利用しているらしい
+        // そのため、Awake()かStart()でコンストラクタを呼ぶ方が良さげ…？
         controls = new GameControls();
+
+        // controls.XXXActionsはGameControlsクラス内でnew XXXActions(this)と定義されていた
+        // 但しXXXはInputActionMapの名前
+        // つまり、このプロパティが呼ばれる度にnewされるようなのであまり良くなさそう
+        _player = controls.Player;
+        _camera = controls.Camera;
+        _UI = controls.UI;
     }
 
     private void OnEnable() {
+        // こう書けばGameControls内のInputAction全部が有効化されるらしい？
         controls.Enable();
+
+        // 下のように書けばPlayerのActionMapのみ有効化できそう？
+        //_player.Enable();
     }
 
     private void OnDestroy() {
+        //　IDisposableなので念のため
         if (controls is not null) {
             controls.Dispose();
         }

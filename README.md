@@ -5,7 +5,7 @@ GitHubにファイルをアップロードするのに慣れていないため�
 Unityのバージョンは2021.2.0bの系統を使っています  
 InputSystem のバージョン1.1系ではポーリング方式で使用する際のAPIが追加されたようなのでこれを使いたいです  
 
-### InputSystemフォルダ内のものについて
+## InputSystemフォルダ内のものについて
 InputSystem.inputsettingsというアセットにInputSystemの設定が保存されています  
 このアセット中のUpdate ModeをProcess Event in Fixed Updateに設定すると  
 InputSystemの更新タイミングがFixed Updateと同期されるようなのでこれを利用したいです  
@@ -19,7 +19,18 @@ InputSystemの更新タイミングがFixed Updateと同期されるようなの
 このGameControlsクラスを用いれば特定のInputActionMapに属するInputActionを纏めてオンオフできそうです  
 ですが、GameControlsクラスは複数インスタンスを作れるようなのでそのまま使うのは管理上不便そうです
 
-### Scenesフォルダ内のものについて
+## Scenesフォルダ内のものについて
 Mainシーンのみしかありません
 
-### Scriptsフォルダ内のものについて
+## Scriptsフォルダ内のものについて
+管理用のシングルトンクラスとその利用クラスが一つずつあります  
+InputManagerクラスは管理用のシングルトンなMonoBehaviorです
+当初は非MonoBehaviorで作るつもりだったのですが厳しそうだったため断念しました  
+自動生成されたクラスのコンストラクタ呼び出しタイミングがAwake()かStart()でないとまずそうだったためです
+とりあえずで作ったためこのままで良いのか心配です
+
+Testクラスはその利用クラスを想定しています  
+このクラスを見れば分かるようにinput.Jump.WasPressedThisFrame()などと旧InputManagerのような使い勝手で利用できます
+また、InputSystemの更新タイミングは上述したようにFixed Updateに合わせられるのでFixedUpdate内部で呼び出してもよさそうです
+
+

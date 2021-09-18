@@ -1,2 +1,3 @@
 # InputSystemTest
-InputSystemのテスト
+デフォルトのバインディングなどの設定はInputActionAssetから行う
+ここではGameControlsという名前のInputActionAssetを作成している

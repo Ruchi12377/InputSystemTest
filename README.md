@@ -22,6 +22,7 @@ InputActionMapごとにそれらを纏めた構造体をGameControlsクラス内
 ### 例:Player用のInputActionMapを作った場合   
 GameControlsクラスにはPlayerActionsという構造体が生成され、Playerという名前のgetterからアクセスできます  
 ですが、下記のようにPlayerというgetterを使う度にnewされてしまいます  
+
 ```csharp:Example.cs  
 public class Example:MonoBehavior  
 {  

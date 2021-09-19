@@ -17,7 +17,8 @@ InputSystemの更新タイミングがFixed Updateと同期されるようなの
 自動生成されたGameControlsクラスはInputActionAssetで設定した内容を元にInputActionを作ってくれるようです    
 また、InputActionAssetで設定したInputActionMapごとに纏めた構造体を生成してくれるようです  
 このGameControlsクラスを用いれば特定のInputActionMapに属するInputActionを纏めてオンオフできそうです  
-ですが、GameControlsクラスは複数インスタンスを作れるようなのでそのまま使うのは管理上不便そうです
+ですが、GameControlsクラスは複数インスタンスを作れるようなのでそのまま使うのは管理上不便そうです  
+(恐らくローカルマルチプレイなどの時に使うと思われる)
 
 ## Scenesフォルダ内のものについて
 Mainシーンのみしかありません

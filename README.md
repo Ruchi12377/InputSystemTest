@@ -54,7 +54,7 @@ InputManagerクラスは管理用のシングルトンなMonoBehaviorです
 とりあえずで作ったためこのままで良いのか心配です
 
 Testクラスはその利用クラスを想定しています  
-このクラスを見れば分かるようにinput.Jump.WasPressedThisFrame()などと旧InputManagerに近い使い勝手で利用できます
+このクラスを見れば分かるようにinput.Jump.WasPressedThisFrame()などと旧InputManagerに近い使い勝手で利用できます  
 また、InputSystemの更新タイミングは上述したようにFixed Updateに合わせられるのでFixedUpdate内部で呼び出してもよさそうです
 
 ## その他（やりたいことや気になる点など）

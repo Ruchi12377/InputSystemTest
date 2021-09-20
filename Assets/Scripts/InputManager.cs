@@ -26,17 +26,10 @@ public sealed class InputManager : MonoBehaviour {
         }
     }
 
+    // シングルプレイヤーならこれでよさそう
+    // マルチプレイヤーを想定するならリストにするなどする必要がありそう
     private GameControls controls;
 
-    // プレイヤー用
-    private GameControls.PlayerActions _player;
-    public GameControls.PlayerActions Player => _player;
-    // カメラ用
-    private GameControls.CameraActions _camera;
-    public GameControls.CameraActions Camera => _camera;
-    // UI用
-    private GameControls.UIActions _UI;
-    public GameControls.UIActions UI => _UI;
 
     private void Awake() {
         /* ---シングルトンのインスタンスの初期化処理 ここから--- */
@@ -55,13 +48,6 @@ public sealed class InputManager : MonoBehaviour {
         // 内部でScriptableObjectを継承したクラスを利用しているらしい
         // そのため、Awake()かStart()でコンストラクタを呼ぶ方が良さげ…？
         controls = new GameControls();
-
-        // controls.XXXActionsはGameControlsクラス内でnew XXXActions(this)と定義されていた
-        // 但しXXXはInputActionMapの名前
-        // つまり、このプロパティが呼ばれる度にnewされるようなのであまり良くなさそう
-        _player = controls.Player;
-        _camera = controls.Camera;
-        _UI = controls.UI;
     }
 
     private void OnEnable() {
@@ -77,5 +63,23 @@ public sealed class InputManager : MonoBehaviour {
         if (controls is not null) {
             controls.Dispose();
         }
+    }
+
+    // マルチプレイヤーの場合に拡張しやすいように敢えてメソッドにしておく
+
+
+    // プレイヤー用の入力管理用の構造体を取得する
+    public GameControls.PlayerActions GetPlayerActions() {
+        return controls.Player;
+    }
+
+    // カメラ用の入力管理用の構造体を取得する
+    public GameControls.CameraActions GetCameraActions() {
+        return controls.Camera;
+    }
+
+    // UI用の入力管理用の構造体を取得する
+    public GameControls.UIActions GetUIActions() {
+        return controls.UI;
     }
 }

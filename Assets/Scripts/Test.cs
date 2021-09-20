@@ -12,7 +12,7 @@ public class Test : MonoBehaviour
     void Start()
     {
         //　このタイミングでないと死ぬ危険性があるかも？
-        input = InputManager.Instance.Player;
+        input = InputManager.Instance.GetPlayerActions();
     }
 
     private void FixedUpdate() {

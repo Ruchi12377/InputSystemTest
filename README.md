@@ -16,29 +16,10 @@ InputSystemの更新タイミングがFixed Updateと同期されるようなの
 
 自動生成されたクラス(以下、GameControlsクラス)はInputActionAssetの設定内容を元にInputActionを作り、    
 InputActionMapごとにそれらを纏めた構造体をGameControlsクラス内に生成するようです  
-また、GameControlsクラスには生成された構造体のインスタンスを返すgetterが用意されていますが、  
-このgetterはアクセスする度にインスタンスを生成するようになっており多用するのはまずそうです  
-
-### 例:Player用のInputActionMapを作った場合   
-GameControlsクラスにはPlayerActionsという構造体が生成され、Playerという名前のgetterからアクセスできます  
-ですが、下記のようにPlayerというgetterを使う度にnewされてしまいます  
-
-```csharp:Example.cs  
-public class Example:MonoBehavior  
-{  
-  private GameControls controls;  
-  private GameControls.PlayerActions player;
-  
-  private void Awake(){
-    controls = new GameControls();
-    // ここのgetterでnewされる 
-    player = controls.Player;
-  }
-}  
-```
-
-ただ、生成された構造体にはそれぞれEnable()及びDisable()というメソッドが用意されており、  
-これらのメソッドを利用することで特定のInputActionMapに属するInputActionを纏めてオンオフできそうです  
+これらの構造体にはそれぞれEnable()及びDisable()というメソッドが用意されており、  
+これを利用することで特定のInputActionMapに属するInputActionを纏めてオンオフできそうです  
+また、GameControlsクラスには生成された構造体のインスタンスを返すgetterがあり、  
+ここからアクセスできそうです  
 
 また、GameControlsクラス自身も複数インスタンスを作れるようになっています  
 これは恐らくローカルマルチプレイなどの時に使うためのものだと思われます  

@@ -14,7 +14,7 @@ InputSystemの更新タイミングがFixed Updateと同期されるようなの
 ここではInputActionAssetにGameControlsという名前をつけて保存しています  
 また、Ganerate C# classのオプションを用いることで同名クラスを自動生成しています  
 
-自動生成されたクラス(以下、GameControlsクラス)はInputActionAssetで設定した内容を元にしたInputActionを作り、    
+自動生成されたクラス(以下、GameControlsクラス)はInputActionAssetの設定内容を元にInputActionを作り、    
 InputActionMapごとにそれらを纏めた構造体をGameControlsクラス内に生成するようです  
 また、GameControlsクラスには生成された構造体のインスタンスを返すgetterが用意されていますが、  
 このgetterはアクセスする度にインスタンスを生成するようになっており多用するのはまずそうです  
